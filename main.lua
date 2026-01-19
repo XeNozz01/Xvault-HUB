@@ -1,7 +1,7 @@
 -- Premium HUB Script by Assistant
--- UI Library dengan Draggable Window, Modern Design
+-- UI XvaultHUB dengan Draggable Window, Modern Design
 
-local Library = {}
+local XvaultHUB = {}
 
 -- Services
 local TweenService = game:GetService("TweenService")
@@ -14,8 +14,8 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 
--- Main Library Functions
-function Library:CreateWindow(hubName)
+-- Main XvaultHUB Functions
+function XvaultHUB:CreateWindow(hubName)
     hubName = hubName or "Premium HUB"
     
     -- Create ScreenGui
@@ -636,4 +636,5 @@ function Library:CreateWindow(hubName)
     return Window
 end
 
-return Library
+
+return XvaultHUB
