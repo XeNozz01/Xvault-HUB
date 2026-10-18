@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dasbor Player — Xvault HUB</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="dashboard" data-layout="none">
+<div class="dash">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
+    <div class="side-head">
+      <a class="logo" href="/"><span class="logo-mark"></span><span>Xvault HUB<small>Panel Pemain</small></span></a>
+    </div>
+    <nav class="side-nav" id="side-nav">
+      <span class="grp">Utama</span>
+      <a data-view="ringkasan" class="on"><span data-icon="gauge"></span> Ringkasan</a>
+      <a data-view="statistik"><span data-icon="chart"></span> Statistik</a>
+      <a data-view="profil"><span data-icon="user"></span> Profil &amp; Keamanan</a>
+      <span class="grp">Karakter</span>
+      <a data-view="inventaris"><span data-icon="box"></span> Inventaris</a>
+      <a data-view="aset"><span data-icon="car"></span> Kendaraan &amp; Aset</a>
+      <a data-view="dompet"><span data-icon="wallet"></span> Dompet &amp; Top-up</a>
+      <span class="grp">Layanan</span>
+      <a data-view="whitelist"><span data-icon="shield"></span> Whitelist &amp; Faction</a>
+      <a data-view="tiket"><span data-icon="ticket"></span> Tiket &amp; Banding <span class="cnt" id="cnt-tiket">0</span></a>
+      <a data-view="pengaturan"><span data-icon="settings"></span> Pengaturan</a>
+      <span class="grp">Situs</span>
+      <a href="/connect"><span data-icon="globe"></span> IP &amp; Join</a>
+      <a href="/ranking"><span data-icon="trophy"></span> Ranking publik</a>
+      <a href="/toko"><span data-icon="cart"></span> Toko</a>
+      <a href="/admin"><span data-icon="lock"></span> Panel Admin</a>
+    </nav>
+    <div class="side-foot">
+      <div class="user-chip" id="side-user"></div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="top">
+      <button class="btn icon side-toggle" id="side-open" aria-label="Menu sidebar"><span data-icon="menu" class="sm"></span></button>
+      <div class="grow">
+        <h1 id="view-title">Ringkasan</h1>
+        <span class="sub" id="view-sub">Memuat data karakter…</span>
+      </div>
+      <div class="top-actions">
+        <span class="live-chip"><span class="dot"></span><span id="top-online">—</span></span>
+        <button class="btn sm" id="btn-copy-ip" title="Salin IP server RP"><span data-icon="copy" class="sm"></span> IP</button>
+        <a class="btn sm" href="https://discord.gg/xvaulthub" target="_blank" rel="noopener" title="Discord"><span data-icon="discord" class="sm"></span></a>
+        <button class="btn sm primary" id="btn-join"><span data-icon="gamepad" class="sm"></span> Join</button>
+      </div>
+    </header>
+
+    <div class="body" id="dash-body">
+      <!-- ============ RINGKASAN ============ -->
+      <section class="view on" data-view-panel="ringkasan">
+        <div id="prof-head-slot"></div>
+        <div class="kpis" id="kpi-slot"></div>
+        <div class="duo">
+          <div class="panel">
+            <div class="ph"><h3><span data-icon="activity"></span> Aktivitas 7 hari terakhir</h3>
+              <div class="seg"><button class="on" data-range="7">7 hari</button><button data-range="30">30 hari</button></div></div>
+            <div class="chart" id="ch-weekly" style="height:210px"></div>
+            <div class="pf"><span class="tiny muted">Termasuk jam AFK-mining yang telah dipotong dari ranking.</span></div>
+          </div>
+          <div class="panel">
+            <div class="ph"><h3><span data-icon="server"></span> Server tersedia</h3><a class="btn xs" href="/connect">Detail</a></div>
+            <div class="live-srv" id="srv-slot"></div>
+          </div>
+        </div>
+        <div class="trio">
+          <div class="panel"><div class="ph"><h3><span data-icon="zap"></span> Jam main per jam (hari ini)</h3></div>
+            <div class="chart" id="ch-hourly" style="height:150px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="sparkles"></span> Capaian</h3><span class="badge plain" id="badge-count">0/8</span></div>
+            <div class="badges" id="badge-slot"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="news"></span> Papan pengumuman</h3></div>
+            <div class="list" id="news-slot"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ STATISTIK ============ -->
+      <section class="view" data-view-panel="statistik">
+        <div class="kpis" id="stat-kpis"></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="clock"></span> Peta waktu main (7 hari × 24 jam)</h3>
+            <span class="tiny muted">makin terang = makin sering online</span></div>
+            <div id="heat-slot"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="target"></span> Performa vs rata-rata pemain</h3></div>
+            <div id="cmp-slot"></div></div>
+        </div>
+        <div class="trio">
+          <div class="panel"><div class="ph"><h3><span data-icon="trophy"></span> Progres ke level berikutnya</h3><span class="tiny muted" id="lvl-note"></span></div>
+            <div class="chart" id="ch-level" style="height:130px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="users"></span> Rekan satu faction</h3></div>
+            <div class="scroll-220 scrollbar" id="mates-slot"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="message"></span> Teman</h3><a class="btn xs" href="#" onclick="XV.toast('Demo: daftar teman diambil dari leaderboard (demo).','info');return false">+ Tambah</a></div>
+            <div class="scroll-220 scrollbar" id="friends-slot"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ PROFIL ============ -->
+      <section class="view" data-view-panel="profil">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="user"></span> Data akun</h3><button class="btn xs" id="btn-edit-profil"><span data-icon="edit" class="sm"></span> Ubah</button></div>
+            <div class="grid g2" id="profile-rows"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="shield"></span> Keamanan</h3></div>
+            <div id="security-slot" class="col" style="gap:10px"></div></div>
+        </div>
+        <div class="trio">
+          <div class="panel"><div class="ph"><h3><span data-icon="gavel"></span> Riwayat sanksi</h3><span class="badge green">bersih</span></div>
+            <div class="table-wrap" style="border:0"><table style="min-width:0"><thead><tr><th>Tanggal</th><th>Jenis</th><th>Alasan</th><th>Staff</th></tr></thead><tbody id="sanction-body"></tbody></table></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="key"></span> Riwayat login</h3></div>
+            <div class="col" id="login-history" style="gap:8px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="layers"></span> Perangkat aktif</h3></div>
+            <div class="col" id="devices-slot" style="gap:8px"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ INVENTARIS ============ -->
+      <section class="view" data-view-panel="inventaris">
+        <div class="kpis" id="inv-kpis"></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="box"></span> Slot inventaris</h3>
+            <div class="tools"><span class="tiny muted" id="inv-weight"></span><button class="btn xs" id="btn-sort-inv">Urutkan</button></div></div>
+            <div class="inv" id="inv-slot"></div>
+            <div class="pf"><span class="tiny muted">Barang <b>bound</b> tidak bisa diberikan ke pemain lain. Drop saat tumbang = hilang permanen.</span></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="list"></span> Detail barang</h3></div>
+            <div id="inv-detail" class="col"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ ASET ============ -->
+      <section class="view" data-view-panel="aset">
+        <div class="kpis" id="asset-kpis"></div>
+        <div class="trio">
+          <div class="panel" style="grid-column:span 2"><div class="ph"><h3><span data-icon="car"></span> Garasi</h3><button class="btn xs" id="btn-veh-refresh"><span data-icon="refresh" class="sm"></span> Sinkron</button></div>
+            <div class="col" id="veh-slot" style="gap:10px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="home"></span> Properti</h3></div>
+            <div class="col" id="house-slot" style="gap:10px"></div>
+            <div class="ph" style="border:0;padding-top:14px"><h3><span data-icon="cart"></span> Bisnis</h3></div>
+            <div class="col" id="biz-slot" style="gap:10px"></div></div>
+        </div>
+      </section>
+
+      <!-- ============ DOMPET ============ -->
+      <section class="view" data-view-panel="dompet">
+        <div class="kpis" id="wallet-kpis"></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="coins"></span> Transaksi terakhir</h3>
+            <div class="tools"><button class="btn xs" id="btn-export-tx"><span data-icon="download" class="sm"></span> CSV</button></div></div>
+            <div class="table-wrap" style="border:0"><table><thead><tr><th>ID</th><th>Jenis</th><th class="r">Jumlah</th><th>Waktu</th><th class="c">Status</th></tr></thead><tbody id="tx-body"></tbody></table></div></div>
+          <div class="col">
+            <div class="panel"><div class="ph"><h3><span data-icon="wallet"></span> Top-up RC</h3></div>
+              <div class="col" id="topup-slot" style="gap:9px"></div>
+              <div class="pf"><span class="tiny muted">Pembayaran demo: invoice &amp; kode QR dibuat di memori server.</span></div></div>
+            <div class="panel"><div class="ph"><h3><span data-icon="tag"></span> Tukar kode</h3></div>
+              <div class="row"><input class="input grow" id="redeem-code" placeholder="XVAULT-DEMO-2026"><button class="btn primary" id="btn-redeem">Tukar</button></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ WHITELIST ============ -->
+      <section class="view" data-view-panel="whitelist">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="shield"></span> Status lamaran</h3><a class="btn xs" href="/aturan#whitelist">Form baru</a></div>
+            <div class="col" id="app-slot" style="gap:10px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="gauge"></span> Penilaian reviewer</h3><span class="tiny muted" id="wl-score"></span></div>
+            <div id="wl-radar" class="col" style="gap:10px"></div></div>
+        </div>
+        <div class="panel"><div class="ph"><h3><span data-icon="users"></span> Faction yang membuka recruitment</h3></div>
+          <div class="grid g4" id="recruit-slot"></div></div>
+      </section>
+
+      <!-- ============ TIKET ============ -->
+      <section class="view" data-view-panel="tiket">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="ticket"></span> Daftarku</h3>
+            <div class="tools"><span class="badge plain" id="tiket-count"></span></div></div>
+            <div class="col scroll-380" id="tiket-list" style="gap:9px"></div>
+            <div class="pf"><span class="tiny muted">Median respon staff: 7 menit 12 detik (24/7).</span></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="message"></span> Percakapan tiket</h3><span class="tiny muted" id="tiket-active">pilih tiket</span></div>
+            <div class="thread" id="tiket-thread"></div>
+            <form class="row" id="tiket-reply" style="gap:9px">
+              <input class="input grow" id="tiket-reply-text" placeholder="Tulis balasan…" disabled>
+              <button class="btn primary" id="btn-tiket-reply" disabled>Kirim</button>
+            </form></div>
+        </div>
+        <div class="panel"><div class="ph"><h3><span data-icon="plus"></span> Buat tiket baru</h3></div>
+          <form id="tiket-form" class="grid g2">
+            <label class="field"><span>Kategori</span><select class="input" id="tk-type"></select></label>
+            <label class="field"><span>Server terkait</span><select class="input" id="tk-server"></select></label>
+            <label class="field" style="grid-column:span 2"><span>Judul</span><input class="input" id="tk-subject" placeholder="Ringkas masalahmu dalam satu baris" required></label>
+            <label class="field" style="grid-column:span 2"><span>Penjelasan + bukti</span>
+              <textarea class="input" id="tk-msg" placeholder="Ceritakan kronologi, timestamp, nama pemain lain, dan lampirkan video ≥ 30 detik." required></textarea></label>
+            <div class="row" style="grid-column:span 2;align-items:center">
+              <label class="check" style="margin:0"><input type="checkbox" id="tk-urgent"> Tandai prioritas tinggi (hanya untuk insiden sedang berlangsung)</label>
+              <span class="spacer"></span><button class="btn primary" type="submit">Kirim tiket</button>
+            </div>
+          </form></div>
+      </section>
+
+      <!-- ============ PENGATURAN ============ -->
+      <section class="view" data-view-panel="pengaturan">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="settings"></span> Preferensi</h3></div>
+            <div class="col" id="prefs-slot" style="gap:12px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="lock"></span> Akun</h3></div>
+            <div class="col" style="gap:10px">
+              <button class="btn block" id="btn-change-pass"><span data-icon="key" class="sm"></span> Ganti password</button>
+              <button class="btn block" id="btn-link-discord"><span data-icon="discord" class="sm"></span> Sinkronkan Discord</button>
+              <button class="btn block" id="btn-export"><span data-icon="download" class="sm"></span> Ekspor data karakter (JSON)</button>
+              <hr>
+              <button class="btn danger block" id="btn-logout">Keluar dari sesi ini</button>
+            </div></div>
+        </div>
+        <div class="note"><b>Catatan demo:</b> semua perubahan disimpan di memori server &amp; localStorage browser. Tidak ada email,
+          pembayaran, atau permintaan data pribadi yang benar-benar diproses.</div>
+      </section>
+    </div>
+  </div>
+</div>
+<div id="toasts"></div>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/dash.js"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kualitas Layanan &amp; Performa Server — Xvault HUB SA-MP</title>
+<meta name="description" content="Metrik kualitas Xvault HUB: uptime 99,94%, ping rata-rata 21 ms, tickrate 4 Hz, anti-cheat XGuard 3.4, spesifikasi hardware, riwayat insiden, dan SLA layanan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="quality">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Kualitas</div>
+      <span class="kicker" style="margin-top:14px">Kualitas &amp; Performa</span>
+      <h1>Kami mengukur hal yang bikin server tetap hidup: <span class="grad-text">latency, stabilitas, fairness</span>.</h1>
+      <p class="lead">Semua angka di halaman ini dihitung dari log watchdog &amp; Prometheus internal, diringkas tiap 5 menit,
+        lalu dibuka publik. Angka pada demo ini bersumber dari <code>/api/quality</code>.</p>
+      <div class="pill-row" style="margin-top:14px">
+        <span class="badge green">Uptime 30 hari: 99,94%</span><span class="badge blue">Ping ID: 12–25 ms</span>
+        <span class="badge violet">Tickrate 4,0 Hz</span><span class="badge yellow">Respon tiket: 7 menit</span>
+        <span class="badge plain">Crash-free: 41 hari</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="grid g4" style="align-items:stretch">
+        <div class="card center" id="g-score"></div>
+        <div class="card center" id="g-uptime"></div>
+        <div class="card center" id="g-ping"></div>
+        <div class="card" style="justify-content:space-between">
+          <h3 style="margin:0 0 6px">SLA yang kami janjikan</h3>
+          <div class="metric"><span>Uptime bulanan</span><b>99,90%</b></div>
+          <div class="metric"><span>Ping maks Jakarta</span><b>45 ms</b></div>
+          <div class="metric"><span>Waktu restart</span><b>&lt; 60 detik</b></div>
+          <div class="metric"><span>Respon tiket &lt; urgent</span><b>30 menit</b></div>
+          <div class="metric"><span>Backup data</span><b>30 menit</b></div>
+          <p class="tiny muted" style="margin:8px 0 0">Kompensasi 7 hari VIP bila SLA meleset lebih dari 0,5 poin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Pilar</span><h2>Enam pilar kualitas</h2>
+        <p>Skala 0–100, diambil dari 30 hari terakhir dan survei pemain bulanan (n = 1.284 responden).</p></div></div>
+      <div class="grid g3" id="quality-pillars"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0" id="status">
+    <div class="wrap">
+      <div class="duo" style="display:grid;grid-template-columns:1.35fr .65fr;gap:18px;align-items:start">
+        <div class="card">
+          <div class="card-top"><div><h3 style="margin:0">Konsistensi uptime harian</h3><small>30 hari terakhir — bar kuning berarti ada insiden &lt; 30 menit</small></div>
+            <span class="badge green" id="uptime-badge">stabil</span></div>
+          <div id="uptime-strip" style="margin:6px 0 18px"></div>
+          <div class="grid g2" style="gap:18px">
+            <div><div class="tiny muted" style="margin-bottom:6px">Ping per jam (WIB)</div><div class="chart" id="chart-ping"></div></div>
+            <div><div class="tiny muted" style="margin-bottom:6px">Uptime 30 hari (%)</div><div class="chart" id="chart-uptime30"></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top"><h3 style="margin:0">Konsol live</h3><span class="live-chip"><span class="dot"></span> <span class="tiny">SSE 3s</span></span></div>
+          <div class="console scrollbar" id="q-console"></div>
+          <p class="tiny muted" style="margin:10px 0 0">Cuplikan log <code>server.log</code> + event gamemode. Di dasbor admin log ini bisa difilter per level.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="duo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
+        <div class="card">
+          <h3 style="display:flex;gap:9px;align-items:center"><span data-icon="wifi"></span> Latency per wilayah</h3>
+          <p class="tiny muted" style="margin:0 0 12px">Pengukuran 6 jam terakhir, 50 probe per wilayah.</p>
+          <div class="col" id="region-list" style="gap:7px"></div>
+        </div>
+        <div class="card">
+          <h3 style="display:flex;gap:9px;align-items:center"><span data-icon="hard"></span> Spesifikasi node</h3>
+          <div id="hw-list" style="margin-top:6px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Perbandingan</span><h2>Xvault HUB vs rata-rata server SA-MP ID</h2>
+        <p>Baseline diambil dari 34 server Indonesia dengan &gt; 100 pemain, Desember 2025.</p></div></div>
+      <div class="duo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
+        <div class="card">
+          <h3 style="margin-top:0">Nilai kami (hijau = lebih tinggi lebih baik)</h3>
+          <div id="chart-compare"></div>
+        </div>
+        <div class="card pad0" style="padding:16px">
+          <div class="table-wrap" style="border:0">
+            <table id="compare-table">
+              <thead><tr><th>Metrik</th><th class="r">Xvault</th><th class="r">Rata-rata</th><th class="r">Kesimpulan</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="split" style="align-items:start">
+        <div>
+          <span class="kicker">Transparansi</span>
+          <h2>Riwayat insiden</h2>
+          <p class="lead tiny" style="margin-bottom:14px">Kami tidak menyembunyikan down. Tiap insiden &gt; 2 menit dipublikasikan dengan durasi dan akar masalah.</p>
+          <div class="col" id="incident-list" style="gap:10px"></div>
+        </div>
+        <div>
+          <span class="kicker">Operasional</span>
+          <h2>Jadwal rutin</h2>
+          <div class="col" id="sched-list" style="gap:8px;margin-top:10px"></div>
+          <div class="card flat" style="margin-top:16px">
+            <h3 style="margin:0 0 6px;display:flex;gap:9px;align-items:center"><span data-icon="chart"></span> Tren beban 24 jam</h3>
+            <div class="chart" id="chart-load24" style="height:150px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="note"><b>Cara angka ini dihitung:</b> uptime = (1 − total detik down / total detik bulan) × 100;
+        ping = median RTT <code>samp_query</code> dari 50 probe; desync = rasio koreksi posisi &gt; 1,5 m;
+        Fair Play = rasio flag yang terbukti benar. Survei kualitas RP memakai skala Likert 5 poin yang dikonversi ke 100.</div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

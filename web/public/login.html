@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Login — Dasbor Player &amp; Admin | Xvault HUB SA-MP</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="login" data-layout="none">
+<div class="auth">
+  <aside class="auth-art">
+    <img src="/assets/img/hero-city.jpg" alt="">
+    <span class="kicker" style="color:#fff">Xvault HUB · Panel Pemain</span>
+    <h2 style="max-width:22ch;margin:10px 0 8px">Satu akun untuk RP, Gangwar, dan Cops n Robbers.</h2>
+    <p class="tiny" style="max-width:44ch;color:#d9d4f0">Pantau dompet RC, inventaris, kendaraan, tiket, lamaran faction,
+      dan ajukan banding tanpa keluar dari browser.</p>
+    <div class="pill-row" style="margin-top:8px">
+      <span class="badge green"><span class="dot" style="background:currentColor"></span> API live</span>
+      <span class="badge violet">SSE 3 detik</span><span class="badge blue">Tanpa cookies pihak ketiga</span>
+    </div>
+    <p class="tiny" style="margin-top:auto;opacity:.72">Proyek demo. Tidak ada data pribadi nyata; kredensial di bawah sengaja dibuka untuk uji coba.</p>
+  </aside>
+
+  <main class="auth-form">
+    <div class="auth-box">
+      <a class="logo" href="/" style="margin-bottom:22px"><span class="logo-mark"></span><span>Xvault HUB<small>SA-MP Indonesia</small></span></a>
+      <div class="tabs" id="auth-tabs" style="margin-bottom:16px">
+        <button data-m="login" class="on">Masuk</button>
+        <button data-m="register">Daftar</button>
+      </div>
+      <h1 id="auth-title" style="font-size:1.6rem;margin:0 0 6px">Masuk ke dasbor</h1>
+      <p class="tiny muted" style="margin-bottom:18px">Setelah login, kamu diarahkan otomatis sesuai peran: player → <code>/dashboard</code>, staff → <code>/admin</code>.</p>
+
+      <form id="auth-form" autocomplete="on">
+        <label class="field"><span>Username karakter</span>
+          <input class="input" id="u" name="username" placeholder="Bagas_Wijaya" required autocomplete="username"></label>
+        <label class="field"><span>Password</span>
+          <input class="input" id="p" name="password" type="password" placeholder="••••••••" required autocomplete="current-password"></label>
+        <div class="only-register" hidden>
+          <label class="field"><span>Email</span><input class="input" type="email" placeholder="kamu@email.com"></label>
+          <label class="field"><span>Server utama</span>
+            <select class="input"><option>Roleplay</option><option>Gangwar</option><option>Cops n Robbers</option><option>Beginner</option></select></label>
+          <label class="check"><input type="checkbox" required> Saya setuju mengikuti <a href="/aturan" style="color:var(--violet)">aturan server</a> dan kebijakan privasi demo ini.</label>
+        </div>
+        <div class="row" style="align-items:center;margin:4px 0 16px">
+          <label class="check" style="margin:0"><input type="checkbox" checked> Ingat perangkat ini</label>
+          <span class="spacer"></span><a class="tiny" href="#" onclick="XV.toast('Demo: reset password tidak diaktifkan.','warn');return false" style="color:var(--violet)">Lupa password?</a>
+        </div>
+        <button class="btn primary block" type="submit">Masuk</button>
+      </form>
+
+      <div class="demo-acc">
+        <div class="tiny muted" style="margin-bottom:2px">Akun demo — klik untuk mengisi otomatis:</div>
+        <button data-u="Bagas_Wijaya" data-p="xvault"><span class="avatar sm">BP</span><span>Player · <code>Bagas_Wijaya</code> / <code>xvault</code></span></button>
+        <button data-u="admin" data-p="xvault123"><span class="avatar sm" style="background:linear-gradient(140deg,#f97316,#c9184a)">KG</span><span>Admin lvl 5 · <code>admin</code> / <code>xvault123</code></span></button>
+        <button data-u="moderator" data-p="xvault123"><span class="avatar sm" style="background:linear-gradient(140deg,#31d99a,#118ab2)">SO</span><span>Moderator lvl 3 · <code>moderator</code> / <code>xvault123</code></span></button>
+      </div>
+      <p class="tiny muted" style="margin-top:16px">Token sesi disimpan di <code>localStorage</code> dan diverifikasi HMAC di server (expiry 12 jam).
+        Ini kerangka autentikasi demo — untuk produksi pakai cookie httpOnly + bcrypt/argon2 + rate limit.</p>
+    </div>
+  </main>
+</div>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

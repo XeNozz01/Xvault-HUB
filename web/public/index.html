@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Xvault HUB — Server SA-MP Indonesia | Roleplay, Gangwar & Cops n Robbers</title>
+<meta name="description" content="Xvault HUB adalah server San Andreas Multiplayer (SA-MP) Indonesia: Roleplay whitelist, Gangwar turf, Cops n Robbers. Ping Jakarta 12–25 ms, anti-cheat XGuard, uptime 99,94%. Join: play.xvaulthub.id:7777">
+<meta name="theme-color" content="#08070e">
+<meta property="og:title" content="Xvault HUB — Server SA-MP Indonesia">
+<meta property="og:description" content="Roleplay berkualitas, Gangwar 24/7, latency rendah, anti-cheat aktif. IP: play.xvaulthub.id:7777">
+<meta property="og:image" content="/assets/img/hero-city.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="home">
+<a class="skip" href="#main">Lompat ke konten</a>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-bg"><img src="/assets/img/hero-city.jpg" alt="Skyline kota di malam hari bergaya game open-world" fetchpriority="high"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">Sejak 2019 · 4 server aktif 24/7</span>
+        <h1>Roleplay San Andreas yang <em>serius soal kualitas</em>.</h1>
+        <p class="sub">Xvault HUB menjalankan server SA-MP 0.3.7 dengan whitelist karakter, ekonomi tertutup,
+          faction resmi, anti-cheat XGuard 3.4, dan jaringan Biznet Jakarta — ping lokal mulai 12 ms.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="/connect" id="hero-join">Gabung Sekarang</a>
+          <a class="btn" href="/dashboard">Dasbor Player</a>
+          <a class="btn ghost" href="/kualitas">Lihat Kualitas Server</a>
+        </div>
+        <div class="ipbox" style="margin-top:20px">
+          <div class="ip-line">
+            <span class="badge green" style="text-transform:none">IP Server</span>
+            <b id="hero-ip">play.xvaulthub.id</b><span class="port">:7777</span>
+            <span class="spacer"></span>
+            <button class="btn sm" id="hero-copy">Salin IP</button>
+          </div>
+          <div class="kbd-hint">Buka SA-MP Launcher → Add Server → Tempel IP → Connect. Bisa juga lewat <kbd>Discord Sync</kbd> untuk auto-whitelist check.</div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="card glow" id="live-card">
+          <div class="card-top">
+            <div><h3 style="margin:0">Status Live</h3><small id="live-updated">menyambungkan…</small></div>
+            <span class="live-chip"><span class="dot"></span> <span id="live-total">—</span></span>
+          </div>
+          <div class="srv" id="home-servers" data-servers compact></div>
+          <div class="row" style="margin-top:14px">
+            <div class="grow"><div class="tiny muted">Grafik kepadatan 24 jam (WIB)</div><div class="chart" id="chart-24h" style="height:112px"></div></div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="hstat"><b data-count="48219">0</b><span>Akun Terdaftar</span></div>
+          <div class="hstat"><b data-count="1345">0</b><span>Puncak Hari Ini</span></div>
+          <div class="hstat"><b data-count="99.94" data-dec="2" data-suffix="%">0</b><span>Uptime 30 Hari</span></div>
+          <div class="hstat"><b data-count="21" data-suffix=" ms">0</b><span>Ping Rata-rata</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-inner">
+      <span><b>◆</b> Roleplay Whitelist <b>◆</b> 42 Zona Turf <b>◆</b> Voice Proximity <b>◆</b> XGuard Anti-Cheat <b>◆</b> 312 Rumah <b>◆</b> 27 Pekerjaan <b>◆</b> Sidang DOJ <b>◆</b> Event Harian <b>◆</b> Discord Sync <b>◆</b></span>
+      <span><b>◆</b> Roleplay Whitelist <b>◆</b> 42 Zona Turf <b>◆</b> Voice Proximity <b>◆</b> XGuard Anti-Cheat <b>◆</b> 312 Rumah <b>◆</b> 27 Pekerjaan <b>◆</b> Sidang DOJ <b>◆</b> Event Harian <b>◆</b> Discord Sync <b>◆</b></span>
+    </div>
+  </div>
+
+  <!-- ============ SERVER LIST ============ -->
+  <section id="server">
+    <div class="wrap">
+      <div class="shead">
+        <div>
+          <span class="kicker">IP Address &amp; Daftar Server</span>
+          <h2>Empat server, satu akun, progres terpisah per mode.</h2>
+          <p>Semua server memakai domain yang sama dengan port berbeda. Klik satu kali untuk menyalin IP-nya.</p>
+        </div>
+        <a class="btn" href="/connect">Detail &amp; cara join <span data-icon="arrowR"></span></a>
+      </div>
+      <div class="grid g2" id="home-server-grid"></div>
+      <div class="note" style="margin-top:16px"><b>Catatan:</b> seluruh angka pada halaman ini berasal dari <b>API simulasi</b>
+        (<code>/api/servers</code> + SSE <code>/api/stream</code>) yang diperbarui tiap 3 detik — bukan server produksi.</div>
+    </div>
+  </section>
+
+  <!-- ============ KENAPA KAMI ============ -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Kualitas</span><h2>Yang bikin pemain betah 300+ jam</h2></div>
+        <a class="btn ghost" href="/kualitas">Semua metrik</a></div>
+      <div class="grid g3">
+        <article class="feat rv"><div class="num-corner">01</div><span class="icon-badge" data-icon="zap"></span>
+          <h3>Latency Indonesia asli</h3><p>Node di DC Biznet Jakarta, rute privat ke ISP lokal. Rata-rata 21 ms, packet loss 0,04%. Tidak ada drama teleport.</p></article>
+        <article class="feat rv"><div class="num-corner">02</div><span class="icon-badge" data-icon="shield"></span>
+          <h3>XGuard 3.4 Anti-Cheat</h3><p>Deteksi aim snap, health lock, speedhack, dan mod texture ilegal. Flag di-review staff &lt; 15 menit.</p></article>
+        <article class="feat rv"><div class="num-corner">03</div><span class="icon-badge" data-icon="users"></span>
+          <h3>Whitelist karakter</h3><p>Setiap karakter lolos seleksi backstory &amp; pemahaman aturan. Itu sebabnya RDM/VDM di server kami &lt; 2 per 1000 jam.</p></article>
+        <article class="feat rv"><div class="num-corner">04</div><span class="icon-badge" data-icon="coins"></span>
+          <h3>Ekonomi yang diaudit</h3><p>Inflasi 2,1%/bulan, pajak progresif, dan rekonsiliasi kas mingguan. Money printer tidak dipakai di sini.</p></article>
+        <article class="feat rv"><div class="num-corner">05</div><span class="icon-badge" data-icon="ticket"></span>
+          <h3>Support 7 menit</h3><p>Median respon tiket 7 menit 12 detik, 24/7. Banding 1x, semua keputusan tercatat di audit log publik.</p></article>
+        <article class="feat rv"><div class="num-corner">06</div><span class="icon-badge" data-icon="gauge"></span>
+          <h3>Panel dasbor lengkap</h3><p>Dompet RC, inventaris, kendaraan, tiket, dan banding — semua dari satu login di dasbor player.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SISTEM PREVIEW ============ -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Sistem Tersedia</span><h2>6 kategori, 39 sistem gamemode aktif</h2>
+        <p>Dari core roleplay sampai perkakas moderasi — lengkap dengan perintah chat-nya.</p></div>
+        <a class="btn" href="/sistem">Semua sistem</a></div>
+      <div class="grid g3" id="home-systems"></div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY + TOP PLAYERS ============ -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="split" style="align-items:start">
+        <div class="col">
+          <span class="kicker">Suasana Server</span>
+          <h2>Malam minggu di Los Santos versi kami</h2>
+          <div class="gallery" style="grid-template-columns:repeat(2,1fr);margin-top:6px">
+            <figure class="shot rv"><img src="/assets/img/shot-roleplay.jpg" alt="Lokasi roleplay polisi di malam hari" loading="lazy"><figcaption>Patroli LSPD — 03:40 WIB</figcaption></figure>
+            <figure class="shot rv"><img src="/assets/img/shot-gangwar.jpg" alt="Suasana perang wilayah di gangwar" loading="lazy"><figcaption>Turf zona 17 — Gangwar</figcaption></figure>
+          </div>
+          <div class="pill-row" style="margin-top:6px">
+            <span class="badge violet">1.840+ jam RP / hari</span><span class="badge blue">42 zona</span>
+            <span class="badge green">312 rumah</span><span class="badge yellow">212 kendaraan</span><span class="badge">27 pekerjaan</span>
+          </div>
+        </div>
+        <div class="col">
+          <span class="kicker">Leaderboard</span>
+          <div class="card" style="padding:16px 16px 10px">
+            <div class="card-top"><h3 style="margin:0">Top Pemain Minggu Ini</h3><a class="btn xs" href="/ranking">Semua</a></div>
+            <div class="table-wrap" style="border:0">
+              <table id="home-top" style="min-width:0"><tbody></tbody></table>
+            </div>
+          </div>
+          <div class="card flat rv">
+            <h3 style="margin:0 0 6px;display:flex;gap:9px;align-items:center"><span data-icon="megaphone"></span> Berita Terbaru</h3>
+            <div class="list" id="home-news"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta rv">
+        <div class="cta-flex">
+          <div>
+            <span class="kicker" style="color:#fff;opacity:.85">Siap main?</span>
+            <h2>Daftar whitelist, bikin karakter, lalu join malam ini juga.</h2>
+            <p style="margin:0;max-width:56ch">Butuh 10–20 menit untuk mengisi form karakter. Staff meriview rata-rata dalam 6 jam.</p>
+          </div>
+          <div class="row wrap-row">
+            <a class="btn" href="/aturan#whitelist">Form Whitelist</a>
+            <a class="btn primary" href="/connect">Salin IP &amp; Join</a>
+            <a class="btn ghost" href="/login">Buat Akun Situs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section style="padding-top:0">
+    <div class="wrap wrap-narrow">
+      <div class="shead"><div><span class="kicker">FAQ</span><h2>Pertanyaan yang paling sering masuk</h2></div>
+        <a class="btn ghost" href="/dashboard?tiket">Buka tiket</a></div>
+      <div id="home-faq"></div>
+    </div>
+  </section>
+</main>
+
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

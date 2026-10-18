@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tim, Rekrutmen &amp; Kontak — Xvault HUB SA-MP</title>
+<meta name="description" content="Kenali staff Xvault HUB, jam operasional moderasi, lowongan helper/moderator yang terbuka, dan kanal kontak resmi.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="staff">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Tim</div>
+      <span class="kicker" style="margin-top:14px">Tim &amp; Kontak</span>
+      <h1>Delapan orang di balik 2.000 slot.</h1>
+      <p class="lead">Semua sukarela. Tidak ada jabatan yang dijual, tidak ada “kekerabatan staff” untuk lolos sanksi.
+        On-duty saat ini bisa dilihat real-time dari dasbor admin.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Struktur</span><h2>Tim inti</h2></div>
+        <a class="btn ghost" href="/dashboard?tiket">Ajukan lamaran staff</a></div>
+      <div class="grid g4" id="team-grid"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="duo" style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
+        <div class="card">
+          <div class="card-top"><h3 style="margin:0;display:flex;gap:9px;align-items:center"><span data-icon="userCheck"></span> Staff on-duty</h3>
+            <span class="badge green"><span class="dot" style="background:currentColor"></span> 5 aktif</span></div>
+          <div class="col" id="staff-sessions" style="gap:8px"></div>
+        </div>
+        <div class="col" id="contact-cards" style="gap:18px">
+          <div class="card"><h3 style="margin-top:0">Kanal resmi</h3>
+            <div class="metric"><span>Discord (tercepat)</span><b class="mono">discord.gg/xvaulthub</b></div>
+            <div class="metric"><span>Tiket situs</span><b class="mono">/dashboard?tiket</b></div>
+            <div class="metric"><span>Email</span><b class="mono">staff@xvaulthub.id</b></div>
+            <div class="metric"><span>In-game</span><b class="mono">/report &lt;pesan&gt;</b></div>
+            <p class="tiny muted" style="margin:10px 0 0">Kami <b>tidak pernah</b> meminta password, kode 2FA, atau data rekening lewat DM.
+              Anyone yang mengaku staff dan meminta itu = penipu.</p>
+          </div>
+          <div class="card flat"><h3 style="margin-top:0">Jam moderasi (WIB)</h3>
+            <div class="metric"><span>Shift pagi</span><b>07:00 – 15:00 · 1 staff</b></div>
+            <div class="metric"><span>Shift sore</span><b>15:00 – 23:00 · 3 staff</b></div>
+            <div class="metric"><span>Shift malam</span><b>23:00 – 07:00 · 2 staff</b></div>
+            <div class="metric"><span>Review rekaman</span><b>harian 02:00</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0" id="rekrutmen">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Lowongan</span><h2>Rekrutmen terbuka</h2>
+        <p>Kami mencari orang yang sabar, konsisten, dan tidak sensitif. Posisi diisi lewat lamaran + masa percobaan 30 hari.</p></div></div>
+      <div class="grid g3">
+        <div class="card hover rv"><div class="card-top"><span class="badge yellow">2 slot</span><span class="tiny muted">Rp 0 — sukarela</span></div>
+          <h3>Helper</h3>
+          <p class="tiny muted">Menjawab pertanyaan umum, menangani /report awal, dan mendampingi pemain baru di server Beginner.</p>
+          <div class="metric"><span>Waktu minimal</span><b>4 jam/malam</b></div>
+          <div class="metric"><span>Usia min.</span><b>18</b></div>
+          <div class="metric"><span>Tahap</span><b>Form → tes aturan → 30 hari percobaan</b></div>
+          <a class="btn sm block" href="/dashboard?tiket" style="margin-top:12px">Ajukan</a></div>
+        <div class="card hover rv"><div class="card-top"><span class="badge green">dibuka</span><span class="tiny muted">level admin 3</span></div>
+          <h3>Moderator</h3>
+          <p class="tiny muted">Meninjau flag XGuard, memutus sanksi level menengah, dan memimpin sidang banding.</p>
+          <div class="metric"><span>Waktu minimal</span><b>15 jam/minggu</b></div>
+          <div class="metric"><span>Pengalaman</span><b>pernah helper / faction lead</b></div>
+          <div class="metric"><span>Tahap</span><b>Wawancara → roleplay test → 45 hari</b></div>
+          <a class="btn sm block" href="/dashboard?tiket" style="margin-top:12px">Ajukan</a></div>
+        <div class="card hover rv"><div class="card-top"><span class="badge blue">1 slot</span><span class="tiny muted">kontributor</span></div>
+          <h3>Developer Pawn (part-time)</h3>
+          <p class="tiny muted">Menambah/memperbaiki sistem gamemode, menulis migrasi skema DB, dan menjaga kualitas kode.</p>
+          <div class="metric"><span>Wajib bisa</span><b>Pawn, SQL, Git</b></div>
+          <div class="metric"><span>Bonus</span><b>Node.js/Express, Docker</b></div>
+          <div class="metric"><span>Bentuk</span><b>PR pertama ditinjau = seleksi</b></div>
+          <a class="btn sm block" href="mailto:staff@xvaulthub.id?subject=Kontribusi%20Pawn" style="margin-top:12px">Kirim portofolio</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

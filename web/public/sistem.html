@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sistem Tersedia — Gamemode &amp; Fitur Xvault HUB SA-MP</title>
+<meta name="description" content="39 sistem gamemode SA-MP yang aktif di Xvault HUB: core roleplay, hukum & faction, ekonomi & properti, PvP/gangwar, komunitas, dan perkakas admin. Termasuk status Stabil/Beta dan persentase kesiapan.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="systems">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Sistem Tersedia</div>
+      <span class="kicker" style="margin-top:14px">Sistem Tersedia</span>
+      <h1>39 sistem gamemode, dari core RP sampai perkakas admin.</h1>
+      <p class="lead">Ditulis dengan perintah chat-nya biar kamu bisa langsung coba. Status <span class="badge green">Stabil</span>
+        berarti sudah lewat uji 30 hari tanpa bug kritis; <span class="badge yellow">Beta</span> masih dibuka untuk feedback.</p>
+      <div class="hero-stats" id="sys-stats" style="max-width:760px;margin-top:20px"></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="filters" style="margin-bottom:18px">
+        <div class="search grow">
+          <span data-icon="search"></span>
+          <input class="input" id="sys-search" placeholder="Cari sistem atau perintah — misal /house, turf, voice…" autocomplete="off">
+        </div>
+        <div class="seg" role="group" aria-label="Filter status">
+          <button data-filter="all" class="on">Semua</button>
+          <button data-filter="Stabil">Stabil</button>
+          <button data-filter="Beta">Beta</button>
+        </div>
+        <button class="btn sm ghost" onclick="document.querySelectorAll('.sys-cat').forEach(n=>n.classList.add('open'))">Buka semua</button>
+        <button class="btn sm ghost" onclick="document.querySelectorAll('.sys-cat').forEach(n=>n.classList.remove('open'))">Tutup semua</button>
+      </div>
+      <div id="sys-list"></div>
+      <p class="note" style="margin-top:20px"><b>Roadmap terbuka:</b> <code>/housing</code> interior editor (Q1),
+        <code>/trainer</code> animasi custom (Q1), <code>/bank</code> mobile app dalam-HP (Q2), dan split-region
+        Singapore untuk menurunkan ping pemain MY/SG di bawah 25 ms (Q2). Vote fitur di Discord.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Cara pakai</span><h2>Cheat-sheet perintah</h2>
+        <p>Perintah dasar yang paling sering dibutuhkan pemain baru. Ketik persis seperti ini di chat SA-MP.</p></div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Perintah</th><th>Fungsi</th><th>Contoh</th><th>Server</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">/register</td><td>Membuat akun karakter</td><td class="mono tiny">/register email123 rahasia123</td><td><span class="badge">semua</span></td></tr>
+            <tr><td class="mono">/login</td><td>Masuk ke karakter</td><td class="mono tiny">/login rahasia123</td><td><span class="badge">semua</span></td></tr>
+            <tr><td class="mono">/help</td><td>Daftar perintah sesuai profesimu</td><td class="mono tiny">/help</td><td><span class="badge">semua</span></td></tr>
+            <tr><td class="mono">/me · /do</td><td>Aksi &amp; interaksi roleplay</td><td class="mono tiny">/me mengecek plat kendaraan</td><td><span class="badge yellow">RP</span></td></tr>
+            <tr><td class="mono">/inv · /use</td><td>Cek &amp; pakai barang</td><td class="mono tiny">/use medikit</td><td><span class="badge yellow">RP</span></td></tr>
+            <tr><td class="mono">/atm · /bank</td><td>Transfer &amp; tarik uang</td><td class="mono tiny">/bank balance</td><td><span class="badge yellow">RP</span></td></tr>
+            <tr><td class="mono">/job · /works</td><td>Pilih &amp; mulai pekerjaan</td><td class="mono tiny">/job trucker</td><td><span class="badge yellow">RP</span></td></tr>
+            <tr><td class="mono">/f · /faction</td><td>Manajemen faction</td><td class="mono tiny">/f invite Bagas_Wijaya</td><td><span class="badge yellow">RP</span> <span class="badge violet">Gangwar</span></td></tr>
+            <tr><td class="mono">/report</td><td>Lapor pelanggaran ke staff (in-game)</td><td class="mono tiny">/report RDM di zona 17</td><td><span class="badge">semua</span></td></tr>
+            <tr><td class="mono">/turf</td><td>Status &amp; klaim wilayah</td><td class="mono tiny">/turf info 17</td><td><span class="badge violet">Gangwar</span></td></tr>
+            <tr><td class="mono">/stats</td><td>Statistik KDR &amp; rank</td><td class="mono tiny">/stats nama_lain</td><td><span class="badge violet">Gangwar</span></td></tr>
+            <tr><td class="mono">/wheel</td><td>Spin hadiah harian</td><td class="mono tiny">/wheel</td><td><span class="badge">semua</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

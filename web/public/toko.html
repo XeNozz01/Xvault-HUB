@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toko, VIP &amp; Vote Rewards — Xvault HUB SA-MP</title>
+<meta name="description" content="Dukung operasional server lewat paket RC, status VIP, item kosmetik, dan slot tambahan. Tidak ada pay-to-win. Plus vote bulanan untuk hadiah RC.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="store">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Toko</div>
+      <span class="kicker" style="margin-top:14px">Toko &amp; Dukungan</span>
+      <h1>Bayar untuk kenyamanan, bukan untuk mengalahkan orang lain.</h1>
+      <p class="lead">Semua item di sini hanya berisi <b>status, slot, kosmetik, dan kemudahan</b>.
+        Damage, uang RP, dan senjata tidak dijual — itu sebabnya ekonomi kami tetap sehat.</p>
+      <div class="pill-row" style="margin-top:12px" id="pay-methods"></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Paket RC</span><h2>Isi saldo RC</h2>
+        <p>RC dipakai untuk item toko dan bisa ditukar ke uang in-game lewat <code>/redeem</code>. Bonus menambah % RC yang diterima.</p></div>
+        <a class="btn ghost" href="/dashboard?dompet">Buka dompet</a></div>
+      <div class="grid g4" id="store-packs"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Item &amp; Status</span><h2>Pilih yang sesuai caramu main</h2></div></div>
+      <div class="grid g4" id="store-items"></div>
+      <p class="note" style="margin-top:18px"><b>Kebijakan refund:</b> pembelian final. Kami hanya mengembalikan RC bila
+        item tidak terkirim karena gangguan sistem &gt; 1 jam — cukup buat tiket “Masalah Pembayaran” dengan nomor invoice.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="kicker">Gratis</span>
+          <h2>Vote bulanan = RC gratis</h2>
+          <p class="lead tiny">Vote menaikkan eksposur server di situs listing. Tiap vote memberi RC yang langsung masuk dompet,
+            dengan cooldown sesuai situs. Tidak perlu login ulang — klaim lewat akun situs.</p>
+          <div class="col" id="vote-list" style="gap:8px;margin-top:14px"></div>
+          <p class="tiny muted" style="margin-top:12px" id="vote-stat"></p>
+        </div>
+        <div class="col">
+          <div class="card glow"><h3 style="margin-top:0;display:flex;gap:9px;align-items:center"><span data-icon="coins"></span> Apa yang uangmu biayai</h3>
+            <div class="metric"><span>Sewa node &amp; proteksi DDoS</span><b>62%</b></div>
+            <div class="metric"><span>Storage, backup, CDN</span><b>14%</b></div>
+            <div class="metric"><span>Lisensi tooling &amp; monitoring</span><b>9%</b></div>
+            <div class="metric"><span>Aset &amp; hadiah event</span><b>15%</b></div>
+            <div class="bar" style="margin-top:12px"><i style="width:62%"></i></div>
+            <p class="tiny muted" style="margin:8px 0 0">Laporan pengeluaran dibuka tiap kuartal di kanal
+              <code>#laporan-keuangan</code> Discord. Tidak ada gaji staff.</p>
+          </div>
+          <div class="card flat"><h3 style="margin-top:0">Status VIP — apa yang dapat</h3>
+            <div class="table-wrap" style="border:0;margin-top:10px">
+              <table style="min-width:0">
+                <thead><tr><th>Benefit</th><th class="c">VIP</th><th class="c">VIP+</th><th class="c">SUPREME</th></tr></thead>
+                <tbody>
+                  <tr><td class="tiny">Antrian prioritas</td><td class="c">✔</td><td class="c">✔</td><td class="c">✔</td></tr>
+                  <tr><td class="tiny">Bonus gaji</td><td class="c">+15%</td><td class="c">+30%</td><td class="c">+30%</td></tr>
+                  <tr><td class="tiny">Slot kendaraan</td><td class="c">+3</td><td class="c">+6</td><td class="c">+9</td></tr>
+                  <tr><td class="tiny">Garasi privat</td><td class="c">—</td><td class="c">1</td><td class="c">2</td></tr>
+                  <tr><td class="tiny">Ganti nama karakter</td><td class="c">—</td><td class="c">—</td><td class="c">1×</td></tr>
+                  <tr><td class="tiny">Slot bisnis gratis</td><td class="c">—</td><td class="c">—</td><td class="c">1</td></tr>
+                  <tr><td class="tiny">Damage lebih besar</td><td class="c">✘</td><td class="c">✘</td><td class="c">✘</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

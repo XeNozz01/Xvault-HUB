@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel Admin — Xvault HUB SA-MP</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="admin" data-layout="none">
+<div class="dash">
+  <aside class="side">
+    <div class="side-head">
+      <a class="logo" href="/"><span class="logo-mark" style="background:linear-gradient(140deg,#f97316,#c9184a)"></span><span>Xvault HUB<small>Panel Admin · lvl <span id="lvl-badge">5</span></small></span></a>
+    </div>
+    <nav class="side-nav" id="side-nav">
+      <span class="grp">Operasional</span>
+      <a data-view="ringkasan" class="on"><span data-icon="gauge"></span> Ringkasan</a>
+      <a data-view="live"><span data-icon="activity"></span> Live Server <span class="cnt v" id="cnt-live">live</span></a>
+      <a data-view="konsol"><span data-icon="terminal"></span> Konsol &amp; Proses</a>
+      <span class="grp">Moderasi</span>
+      <a data-view="pemain"><span data-icon="users"></span> Manajemen Pemain</a>
+      <a data-view="sanksi"><span data-icon="ban"></span> Sanksi &amp; Banding</a>
+      <a data-view="tiket"><span data-icon="ticket"></span> Antrean Tiket <span class="cnt" id="cnt-ticket">0</span></a>
+      <a data-view="whitelist"><span data-icon="shield"></span> Review Whitelist <span class="cnt" id="cnt-wl">0</span></a>
+      <span class="grp">Server</span>
+      <a data-view="ekonomi"><span data-icon="coins"></span> Ekonomi</a>
+      <a data-view="pengumuman"><span data-icon="megaphone"></span> Pengumuman</a>
+      <a data-view="log"><span data-icon="list"></span> Log Audit</a>
+      <a data-view="konfigurasi"><span data-icon="sliders"></span> Konfigurasi</a>
+      <span class="grp">Situs</span>
+      <a href="/dashboard"><span data-icon="user"></span> Tampilan Player</a>
+      <a href="/"><span data-icon="globe"></span> Ke Situs</a>
+    </nav>
+    <div class="side-foot"><div class="user-chip" id="side-user"></div></div>
+  </aside>
+
+  <div class="main">
+    <header class="top">
+      <button class="btn icon side-toggle" id="side-open" aria-label="Menu"><span data-icon="menu" class="sm"></span></button>
+      <div class="grow">
+        <h1 id="view-title">Ringkasan</h1><span class="sub" id="view-sub">Memuat kondisi server…</span>
+      </div>
+      <div class="top-actions">
+        <span class="live-chip" id="chip-online"><span class="dot"></span><span>—</span></span>
+        <button class="btn sm" id="btn-refresh"><span data-icon="refresh" class="sm"></span> Segarkan</button>
+        <button class="btn sm warn" id="btn-broadcast-quick"><span data-icon="megaphone" class="sm"></span> Broadcast</button>
+        <button class="btn sm danger" id="btn-restart-all"><span data-icon="power" class="sm"></span> Restart semua</button>
+      </div>
+    </header>
+
+    <div class="body">
+      <!-- RINGKASAN -->
+      <section class="view on" data-view-panel="ringkasan">
+        <div class="kpis" id="ov-kpis"></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="chart"></span> Beban online 24 jam</h3>
+            <div class="legend"><span><i style="background:#9b6bf2"></i>Online</span><span><i style="background:#4cc9f0"></i>Ping (÷1)</span></div></div>
+            <div class="chart" id="ch-load" style="height:220px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="gamepad"></span> Komposisi mode</h3></div>
+            <div id="donut-slot"></div></div>
+        </div>
+        <div class="trio">
+          <div class="panel"><div class="ph"><h3><span data-icon="server"></span> Node &amp; kapasitas</h3><span class="badge green" id="ov-uptime"></span></div>
+            <div class="live-srv" id="ov-servers"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="userCheck"></span> Staff on-duty</h3></div>
+            <div class="col" id="ov-staff" style="gap:8px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="terminal"></span> Log terbaru</h3><a class="btn xs" href="#konsol" data-goto="konsol">Konsol penuh</a></div>
+            <div class="console scrollbar" id="ov-console" style="height:212px"></div></div>
+        </div>
+      </section>
+
+      <!-- LIVE -->
+      <section class="view" data-view-panel="live">
+        <div class="kpis" id="live-kpis"></div>
+        <div class="panel"><div class="ph"><h3><span data-icon="activity"></span> Kontrol per server</h3>
+          <span class="tiny muted">Perintah dieksekusi lewat API admin → diteruskan ke console gamemode (RPC).</span></div>
+          <div class="live-srv" id="live-servers" style="gap:12px"></div></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="users"></span> Pemain online (top 40)</h3>
+            <div class="tools"><div class="search" style="width:190px"><input class="input" id="live-search" placeholder="Filter nama…"></div></div></div>
+            <div class="table-wrap" style="border:0"><table style="min-width:0">
+              <thead><tr><th>Pemain</th><th class="r">Lv</th><th class="r">Ping</th><th>Server</th><th class="r">Aksi</th></tr></thead>
+              <tbody id="live-players"></tbody></table></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="wifi"></span> Ping &amp; loss per jam</h3></div>
+            <div class="chart" id="ch-ping" style="height:200px"></div>
+            <div class="pf"><span class="tiny muted">Loss &gt; 0,4% memicu alarm ke kanal <code>#infra-alert</code>.</span></div></div>
+        </div>
+      </section>
+
+      <!-- KONSOL -->
+      <section class="view" data-view-panel="konsol">
+        <div class="panel"><div class="ph"><h3><span data-icon="terminal"></span> Konsol server</h3>
+          <div class="tools">
+            <div class="seg" id="con-filter"><button class="on" data-lvl="all">Semua</button><button data-lvl="game">Game</button>
+              <button data-lvl="warn">Warn</button><button data-lvl="err">Error</button><button data-lvl="econ">Econ</button></div>
+            <label class="sw"><input type="checkbox" id="con-autoscroll" checked><i></i><span class="tiny">auto</span></label>
+            <button class="btn xs" id="con-clear">Bersihkan</button>
+          </div></div>
+          <div class="console scrollbar" id="con-full" style="height:min(52vh,460px)"></div>
+          <form class="row" id="con-form" style="margin-top:12px">
+            <span class="mono" style="align-self:center;color:var(--violet)">/&gt;</span>
+            <input class="input grow mono" id="con-input" placeholder="/announce Selamat malam · /restart rp · /status · /lookup Nama_Pemain" autocomplete="off">
+            <button class="btn primary" type="submit">Kirim</button>
+          </form></div>
+        <div class="trio" id="con-cards"></div>
+      </section>
+
+      <!-- PEMAIN -->
+      <section class="view" data-view-panel="pemain">
+        <div class="panel"><div class="ph">
+          <h3><span data-icon="users"></span> Database pemain</h3>
+          <div class="tools">
+            <div class="search" style="width:230px"><span data-icon="search"></span><input class="input" id="pl-search" placeholder="nama / faction / kota"></div>
+            <select class="input" id="pl-status" style="width:auto"><option value="">Semua status</option><option value="online">Online</option><option value="banned">Banned</option><option value="staff">Staff</option></select>
+            <select class="input" id="pl-faction" style="width:auto"><option value="">Semua faction</option></select>
+            <button class="btn xs" id="pl-reset">Reset</button>
+          </div></div>
+          <div class="sel-bar" id="pl-selbar" hidden></div>
+          <div class="table-wrap scrollbar"><table>
+            <thead><tr><th style="width:34px"><input type="checkbox" class="box" id="pl-all"></th>
+              <th>Pemain</th><th class="r">Lv</th><th class="r">Jam</th><th class="r">K/D</th><th>Faction</th><th class="r">Uang</th><th class="c">Status</th><th class="r">Aksi</th></tr></thead>
+            <tbody id="pl-body"></tbody></table></div>
+          <div class="pager" id="pl-pager"></div></div>
+      </section>
+
+      <!-- SANKSI -->
+      <section class="view" data-view-panel="sanksi">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="alert"></span> Flag XGuard menunggu review</h3><span class="badge red" id="flag-count">0</span></div>
+            <div class="col scroll-380" id="flag-list" style="gap:9px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="gavel"></span> Pengajuan banding</h3></div>
+            <div class="col scroll-380" id="appeal-list" style="gap:9px"></div></div>
+        </div>
+        <div class="panel"><div class="ph"><h3><span data-icon="ban"></span> Sanksi terakhir diberikan</h3>
+          <div class="tools"><select class="input" id="sn-filter" style="width:auto">
+            <option value="">Semua aksi</option><option>BAN</option><option>KICK</option><option>MUTE</option><option>FREEZE</option><option>UNBAN</option><option>WHITELIST</option></select></div></div>
+          <div class="table-wrap scrollbar"><table style="min-width:0"><thead><tr><th>Waktu</th><th>Aksi</th><th>Pemain</th><th>Alasan</th><th>Staff</th><th class="c">Hasil</th></tr></thead>
+            <tbody id="sn-body"></tbody></table></div></div>
+      </section>
+
+      <!-- TIKET -->
+      <section class="view" data-view-panel="tiket">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="ticket"></span> Antrean</h3>
+            <div class="tools"><select class="input" id="tk-filter" style="width:auto"><option value="all">Semua</option><option value="open">Terbuka</option><option value="in_progress">Diproses</option><option value="waiting_user">Menunggu user</option><option value="resolved">Selesai</option></select></div></div>
+            <div class="col scroll-380" id="tk-list" style="gap:9px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="message"></span> Kerjakan tiket</h3><span class="tiny muted" id="tk-meta">pilih tiket</span></div>
+            <div class="thread" id="tk-thread"></div>
+            <div class="col" style="gap:9px;margin-top:10px">
+              <textarea class="input" id="tk-reply" placeholder="Balasan staff — jangan menjanjikan hal yang tidak bisa ditepati…" style="min-height:76px"></textarea>
+              <div class="row wrap-row">
+                <button class="btn primary" id="tk-send">Balas &amp; tandai diproses</button>
+                <button class="btn" id="tk-resolve">Tandai selesai</button>
+                <select class="input" id="tk-prio" style="width:auto"><option value="low">prioritas rendah</option><option value="normal">normal</option><option value="high">tinggi</option><option value="urgent">urgent</option></select>
+                <button class="btn ghost" id="tk-assign">Tugaskan ke aku</button>
+              </div></div></div>
+        </div>
+      </section>
+
+      <!-- WHITELIST -->
+      <section class="view" data-view-panel="whitelist">
+        <div class="panel"><div class="ph"><h3><span data-icon="shield"></span> Antrean review whitelist</h3>
+          <div class="tools"><span class="badge yellow" id="wl-queue">—</span>
+            <button class="btn xs" id="wl-approve-all">Setujui semua ≥ 80</button></div></div>
+          <div class="table-wrap scrollbar"><table>
+            <thead><tr><th>ID</th><th>Karakter</th><th>Pemohon</th><th class="r">Skor</th><th>Aspek terlemah</th><th>Status</th><th class="r">Keputusan</th></tr></thead>
+            <tbody id="wl-body"></tbody></table></div></div>
+      </section>
+
+      <!-- EKONOMI -->
+      <section class="view" data-view-panel="ekonomi">
+        <div class="kpis" id="ec-kpis"></div>
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="chart"></span> Sirkulasi uang (30 hari)</h3></div>
+            <div class="chart" id="ch-eco" style="height:200px"></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="coins"></span> Sumber arus kas</h3></div>
+            <div id="ec-flows"></div></div>
+        </div>
+        <div class="trio">
+          <div class="panel" style="grid-column:span 2"><div class="ph"><h3><span data-icon="trophy"></span> 10 rekening terbesar</h3></div>
+            <div class="table-wrap" style="border:0"><table style="min-width:0"><thead><tr><th>#</th><th>Pemain</th><th class="r">Tunai</th><th class="r">Bank</th><th class="r">Total</th><th class="r">Aksi</th></tr></thead><tbody id="ec-top"></tbody></table></div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="tag"></span> Pantauan harga pasar</h3></div>
+            <div class="col" id="ec-prices" style="gap:6px"></div></div>
+        </div>
+      </section>
+
+      <!-- PENGUMUMAN -->
+      <section class="view" data-view-panel="pengumuman">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="megaphone"></span> Buat pengumuman</h3></div>
+            <form id="bc-form" class="col" style="gap:12px">
+              <label class="field"><span>Isi pesan</span><textarea class="input" id="bc-text" maxlength="220" placeholder="Server restart 5 menit lagi — simpan progres & parkir kendaraan."></textarea>
+                <span class="tiny muted" id="bc-count">0/220</span></label>
+              <div class="grid g2" style="gap:14px">
+                <label class="field" style="margin:0"><span>Target</span><select class="input" id="bc-target">
+                  <option value="semua">Semua server</option><option value="Roleplay">Roleplay</option><option value="Gangwar">Gangwar</option>
+                  <option value="Cops n Robbers">Cops n Robbers</option><option value="Beginner">Beginner</option></select></label>
+                <label class="field" style="margin:0"><span>Tampilan</span><select class="input" id="bc-style">
+                  <option>Chat kuning (default)</option><option>Textdraw tengah layar</option><option>Banner 15 detik</option><option>DM ke seluruh online</option></select></label>
+              </div>
+              <div class="row wrap-row"><label class="check" style="margin:0"><input type="checkbox" id="bc-dc" checked> Kirim juga ke #server-announce</label>
+                <span class="spacer"></span><button class="btn primary" type="submit">Kirim sekarang</button></div>
+            </form>
+            <div class="note" style="margin-top:12px">Kirim ke <code>POST /api/admin/broadcast</code> — minimal admin level 3. Pesan tampil di banner situs &amp; SSE klien.</div></div>
+          <div class="panel"><div class="ph"><h3><span data-icon="list"></span> Riwayat</h3></div>
+            <div class="col" id="bc-list" style="gap:9px"></div></div>
+        </div>
+      </section>
+
+      <!-- LOG -->
+      <section class="view" data-view-panel="log">
+        <div class="panel"><div class="ph"><h3><span data-icon="list"></span> Log audit admin</h3>
+          <div class="tools"><div class="search" style="width:220px"><input class="input" id="lg-q" placeholder="cari target / alasan"></div>
+            <button class="btn xs" id="lg-export"><span data-icon="download" class="sm"></span> Ekspor JSON</button></div></div>
+          <div class="table-wrap scrollbar"><table style="min-width:0"><thead><tr><th>Waktu</th><th>Aksi</th><th>Pemain</th><th>Alasan</th><th>Staff</th><th>Server</th><th class="c">Hasil</th></tr></thead>
+            <tbody id="lg-body"></tbody></table></div>
+          <div class="pager" id="lg-pager"></div></div>
+      </section>
+
+      <!-- KONFIGURASI -->
+      <section class="view" data-view-panel="konfigurasi">
+        <div class="duo">
+          <div class="panel"><div class="ph"><h3><span data-icon="sliders"></span> Konfigurasi runtime</h3><span class="tiny muted" id="cfg-state">tersimpan di memori</span></div>
+            <div class="grid g2" style="gap:14px">
+              <label class="field"><span>Slot maksimum</span><input class="input" type="number" id="cfg-slots" value="2000"></label>
+              <label class="field"><span>Tickrate</span><select class="input" id="cfg-tick"><option>4.0 Hz</option><option>3.0 Hz</option><option>2.0 Hz</option></select></label>
+              <label class="field"><span>Interval auto-restart</span><select class="input" id="cfg-restart"><option>6 jam</option><option>3 jam</option><option>12 jam</option><option>mati</option></select></label>
+              <label class="field"><span>Sensitivitas XGuard</span><input class="input" type="range" id="cfg-ac" min="1" max="10" value="7"></label>
+              <label class="field"><span>Maksimal karakter / akun</span><input class="input" type="number" id="cfg-chars" value="3"></label>
+              <label class="field"><span>Antrean slot</span><select class="input" id="cfg-queue"><option>aktif (FIFO + VIP)</option><option>hanya VIP</option><option>mati</option></select></label>
+            </div>
+            <div class="col" style="gap:10px;margin-top:4px">
+              <label class="sw"><input type="checkbox" id="cfg-wl" checked><i></i><span>Whitelist wajib untuk server Roleplay</span></label>
+              <label class="sw"><input type="checkbox" id="cfg-regen" checked><i></i><span>Regenerasi HP pasif di zona aman</span></label>
+              <label class="sw"><input type="checkbox" id="cfg-voice" checked><i></i><span>Voice proximity (SAMVoice)</span></label>
+              <label class="sw"><input type="checkbox" id="cfg-punish"><i></i><span>Auto-ban tanpa review staff (hardcore)</span></label>
+            </div>
+            <div class="row"><button class="btn primary" id="cfg-save">Simpan konfigurasi</button><button class="btn ghost" id="cfg-reset">Muat ulang default</button></div></div>
+          <div class="col">
+            <div class="panel"><div class="ph"><h3><span data-icon="database"></span> Data &amp; backup</h3></div>
+              <div class="metric"><span>Backup terakhir</span><b class="mono" id="bk-last">—</b></div>
+              <div class="metric"><span>Ukuran DB</span><b class="mono">4,12 GB</b></div>
+              <div class="metric"><span>Retensi</span><b class="mono">30 hari</b></div>
+              <div class="row"><button class="btn" id="bk-now">Backup sekarang</button><button class="btn ghost" id="bk-verify">Verifikasi integritas</button></div></div>
+            <div class="panel"><div class="ph"><h3><span data-icon="alert"></span> Zona berbahaya</h3></div>
+              <p class="tiny muted" style="margin:0">Tindakan di bawah menghapus data pemain. Semua butuh level 4+ dan tercatat di log audit.</p>
+              <div class="col" style="gap:8px;margin-top:10px">
+                <button class="btn danger block" id="dz-wipe">Wipe database bisnis (belum dipakai)</button>
+                <button class="btn danger block" id="dz-lock">Kunci registrasi karakter</button>
+                <button class="btn ghost block" id="dz-reset">Reset sesi seluruh staff</button></div></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div id="toasts"></div>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/admin.js"></script>
+</body>
+</html>

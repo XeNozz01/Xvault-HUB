@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tentang Xvault HUB — Sejarah, Misi &amp; Komunitas Server SA-MP</title>
+<meta name="description" content="Xvault HUB berdiri sejak 2019: dari satu server Gangwar kecil menjadi 4 server SA-MP dengan 48 ribu akun. Baca misi, prinsip RP, struktur faction, dan tim di baliknya.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="about">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Tentang</div>
+      <span class="kicker" style="margin-top:14px">Tentang Kami</span>
+      <h1>Bermula dari iseng, tumbuh jadi rumah bagi 48 ribu karakter.</h1>
+      <p class="lead">Xvault HUB dijalankan komunitas, dibiayai swadaya, dan dipelihara 5 orang intinya.
+        Tidak ada investor, tidak ada money printer, tidak ada jual-juban jabatan staff.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <h2 style="margin-top:0">Ceritanya</h2>
+          <p>Pada Agustus 2019, sebuah grup kecil pemain Gangwar menyewa VPS bekas untuk isian malam minggu.
+            Namanya waktu itu masih “X-Vault FW”, port acak, dan gamemode hasil saduran dari forum yang sudah tidak aktif.</p>
+          <p>Tiga hal yang kami putuskan di tahun pertama dan masih kami pegang sampai sekarang:
+            (1) sanksi diumumkan terbuka supaya adil, (2) ekonomi harus punya sumber dan pembuang uang, bukan hanya /give,
+            (3) kalau ada bug, fix dulu fitur—baru jual item kosmetik.</p>
+          <p>Pada 2022 server Roleplay dibuka dengan whitelist, 2023 sistem anti-cheat XGuard dirilis,
+            2024 kami pindah ke node Jakarta sendiri, dan 2026 ini semua fitur bisa dipantau dari dasbor web.</p>
+          <div class="timeline" style="margin-top:22px">
+            <div class="tl-item"><time>Agu 2019</time><br><b>Server Gangwar pertama</b> — 12 pemain, 1 VPS, restart manual.</div>
+            <div class="tl-item"><time>Feb 2021</time><br><b>Ekonomi tertutup</b> — paycheck, pajak, dan 40 pekerjaan pertama.</div>
+            <div class="tl-item"><time>Jul 2022</time><br><b>Roleplay + whitelist</b> — 620 lamaran masuk di bulan pertama.</div>
+            <div class="tl-item"><time>Nov 2023</time><br><b>XGuard 1.0</b> — deteksi aim & health hack, sanksi otomatis 128 akun.</div>
+            <div class="tl-item"><time>Mar 2024</time><br><b>Node Jakarta</b> — ping lokal turun dari 62 ms ke 18 ms.</div>
+            <div class="tl-item"><time>Sep 2026</time><br><b>Dasbor &amp; API publik</b> — situs ini, termasuk panel admin.</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card glow">
+            <h3 style="margin-top:0" id="misi-title">Prinsip yang kami pegang</h3>
+            <div class="list">
+              <div class="list-row"><span class="tile-ico">🎭</span><div><b class="tiny">RP dulu, menang belakangan</b><div class="tiny muted">Kalah RP yang dimainkan dengan baik lebih berharga daripada kill ke-500.</div></div></div>
+              <div class="list-row"><span class="tile-ico">⚖️</span><div><b class="tiny">Aturan tertulis, sanksi tercatat</b><div class="tiny muted">Tidak ada “kena ban gara-gara tidak suka”. Semua ada alasannya.</div></div></div>
+              <div class="list-row"><span class="tile-ico">🔓</span><div><b class="tiny">Transparan</b><div class="tiny muted">Uptime, insiden, dan audit ekonomi dibuka ke publik.</div></div></div>
+              <div class="list-row"><span class="tile-ico">🧩</span><div><b class="tiny">Ramah pemula</b><div class="tiny muted">Server Beginner + pendampingan tiap malam untuk yang baru belajar.</div></div></div>
+            </div>
+          </div>
+          <figure class="shot rv" style="border-radius:var(--r-lg)"><img src="/assets/img/shot-roleplay.jpg" alt="Aktivitas roleplay polisi di server" loading="lazy"><figcaption>Sesi patroli gabungan LSPD × EMS, Sabtu 21:00 WIB</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Angka</span><h2>Kondisi saat ini</h2>
+        <p>Statistik agregat lintas 4 server, dihitung ulang dari API tiap halaman dimuat.</p></div>
+        <a class="btn ghost" href="/kualitas">Detail kualitas</a></div>
+      <div class="hero-stats grid g3" id="about-stats" style="max-width:none"></div>
+      <div class="grid g2" style="margin-top:18px">
+        <div class="card"><h3 style="margin-top:0">Tren online 30 hari</h3><div class="chart" id="about-chart"></div>
+          <div class="legend"><span><i style="background:#9b6bf2"></i>Puncak</span><span><i style="background:#4cc9f0"></i>Rata-rata</span></div></div>
+        <div class="card"><h3 style="margin-top:0">Pemain baru per hari (14 hari)</h3><div class="chart" id="about-new"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="kicker">Faction</span>
+          <h2>12 faction resmi, kapasitas terbatas</h2>
+          <p class="tiny muted">Slot dibuat terbatas supaya tiap fraksi punya cukup orang saat prime time, tapi tidak jadi klub eksklusif.
+            Recruitment dibuka berkala lewat dasbor player.</p>
+          <div class="col" id="about-factions" style="gap:8px;margin-top:10px"></div>
+        </div>
+        <div class="col">
+          <span class="kicker">Struktur</span>
+          <div class="card flat"><h3 style="margin-top:0">Siapa mengerjakan apa</h3>
+            <div class="metric"><span>Pengembangan (pawn + web)</span><b>3 orang</b></div>
+            <div class="metric"><span>Moderasi 3 shift</span><b>7 orang</b></div>
+            <div class="metric"><span>Event &amp; konten</span><b>2 orang</b></div>
+            <div class="metric"><span>Infra &amp; jaringan</span><b>1 orang</b></div>
+            <div class="metric"><span>Relawan helper</span><b>9 orang</b></div>
+            <p class="tiny muted">Semua staff adalah pemain sukarela. Kami tidak menjual jabatan; jabatan staff diberikan
+              lewat lamaran terbuka + masa percobaan 30 hari.</p>
+          </div>
+          <div class="card flat"><h3 style="margin-top:0">Dibiayai dari mana</h3>
+            <p class="tiny" style="margin:0;color:var(--ink-2)">Sewa node, proteksi DDoS, dan storage (± Rp 4,8 jt/bulan) ditutup dari
+              pembelian sukarela di toko (VIP/kosmetik). Tidak ada iklan, tidak ada pay-to-win: item toko hanya status, slot, dan kosmetik.</p>
+          </div>
+          <a class="btn block primary" href="/staff">Kenali tim &amp; rekrutmen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta"><div class="cta-flex">
+        <div><span class="kicker" style="color:#fff;opacity:.85">Bergabung</span>
+          <h2>Mau jadi bagian dari cerita Los Santos ini?</h2>
+          <p style="margin:0">Buat karakter, kirim whitelist, atau daftar jadi staff. Semuanya lewat dasbor.</p></div>
+        <div class="row wrap-row"><a class="btn primary" href="/login">Buat akun</a><a class="btn ghost" href="/aturan#whitelist">Form whitelist</a></div>
+      </div></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Aturan Server &amp; Panduan Whitelist — Xvault HUB SA-MP</title>
+<meta name="description" content="10 aturan inti Xvault HUB (RDM, VDM, metagaming, powergaming, cheat), panduan mengisi form whitelist karakter, dan prosedur banding sanksi.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="rules">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Aturan</div>
+      <span class="kicker" style="margin-top:14px">Aturan &amp; Whitelist</span>
+      <h1>10 aturan yang menjaga server tetap nyaman.</h1>
+      <p class="lead">Ringkas, spesifik, dan memang dipakai saat memberi sanksi. Kalau kamu setuju sanggup mengikuti semuanya,
+        lanjut ke form whitelist di bawah.</p>
+      <div class="pill-row" style="margin-top:12px">
+        <span class="badge red">Sanksi otomatis untuk cheat</span><span class="badge yellow">Banding 1× per sanksi</span>
+        <span class="badge blue">Bukti video wajib</span><span class="badge green">Review &lt; 6 jam</span>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap wrap-narrow">
+      <div class="shead"><div><span class="kicker">Daftar aturan</span><h2>Yang dilarang &amp; sanksinya</h2></div></div>
+      <div class="col" id="rules-list" style="gap:10px"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0" id="whitelist">
+    <div class="wrap">
+      <div class="split" style="align-items:start">
+        <div class="card pad-lg">
+          <h3 style="margin-top:0;display:flex;gap:9px;align-items:center"><span data-icon="gavel"></span> Form aplikasi whitelist</h3>
+          <p class="tiny muted">Isi sebagai karakter, bukan sebagai kamu di dunia nyata. Minimal 250 karakter untuk backstory.</p>
+          <form id="wl-form">
+            <div class="grid g2" style="gap:14px">
+              <label class="field"><span>Nama karakter</span><input class="input" name="character" placeholder="Bagas_Wijaya" required pattern="[A-Za-z]+_[A-Za-z]{2,}" title="Format: Nama_Belakang"></label>
+              <label class="field"><span>Usia (OOC)</span><input class="input" name="age" type="number" min="16" max="70" value="21" required></label>
+            </div>
+            <label class="field"><span>Server tujuan</span>
+              <select class="input" name="server">
+                <option>Xvault HUB — Roleplay</option><option>Xvault HUB — Gangwar</option>
+                <option>Xvault HUB — Cops n Robbers</option><option>Xvault HUB — Beginner</option>
+              </select></label>
+            <div class="grid g2" style="gap:14px">
+              <label class="field"><span>Jam main SA-MP</span><input class="input" name="hours" type="number" min="0" value="120"></label>
+              <label class="field"><span>Faction incaran</span>
+                <select class="input" name="faction"><option value="">Belum tahu</option><option>LSPD</option><option>EMS</option>
+                <option>DOJ</option><option>GSF</option><option>BAL</option><option>PDX</option><option>LSC</option></select></label>
+            </div>
+            <label class="field"><span>Backstory karakter (min. 250 karakter)</span>
+              <textarea class="input" name="story" required minlength="250" placeholder="Lahir di El Corona, besar bersama kakek yang sopir taksi…"></textarea></label>
+            <label class="field"><span>Pemahaman aturan — apa bedanya RDM dan RP kill yang sah?</span>
+              <textarea class="input" name="rules" required minlength="60" placeholder="Jelaskan dengan contoh singkat…"></textarea></label>
+            <label class="field"><span>Skenario: kamu dirampok di ATM, apa yang kamu lakukan?</span>
+              <textarea class="input" name="scenario" required minlength="40" placeholder="Contoh jawaban fear RP…"></textarea></label>
+            <label class="check"><input type="checkbox" required> Saya sudah membaca 10 aturan di atas dan siap menerima sanksi bila melanggar.</label>
+            <label class="check"><input type="checkbox"> Kirimi saya pengumuman event via Discord (opsional).</label>
+            <button class="btn primary block" type="submit">Kirim aplikasi whitelist</button>
+            <p class="tiny muted" style="margin:10px 0 0">Demo: form ini memanggil <code>POST /api/me/tickets</code> bila kamu login,
+              kalau tidak hanya menampilkan notifikasi. Tidak ada data yang dikirim ke luar.</p>
+          </form>
+        </div>
+
+        <div class="col">
+          <div class="card flat"><h3 style="margin-top:0;display:flex;gap:9px;align-items:center"><span data-icon="book"></span> Yang dinilai staff</h3>
+            <div class="metric"><span>Kedalaman backstory</span><b>25%</b></div>
+            <div class="metric"><span>Pemahaman hukum server</span><b>25%</b></div>
+            <div class="metric"><span>Kosa kata &amp; /me deskriptif</span><b>20%</b></div>
+            <div class="metric"><span>Kematangan skenario</span><b>20%</b></div>
+            <div class="metric"><span>Kesediaan menerima kritik</span><b>10%</b></div>
+            <p class="tiny muted" style="margin:8px 0 0">Nilai ≥ 80 otomatis diterima, 62–79 diterima dengan catatan, &lt; 62 ditolak dan boleh ajukan ulang setelah 3 hari.</p></div>
+
+          <div class="card flat"><h3 style="margin-top:0">Tips agar diterima</h3>
+            <ul class="tiny" style="padding-left:18px;margin:0;line-height:1.9;color:var(--ink-2)">
+              <li>Tulis karakter yang <b>bisa diajak RP orang lain</b> — bukan superhero sendirian.</li>
+              <li>Hindari karakter “jenius hacker 17 tahun punya semua lisensi”.</li>
+              <li>Sebutkan konflik: siapa musuhnya, apa yang dia takuti, apa yang dia inginkan.</li>
+              <li>Beri alasan dia masuk faction tertentu, bukan “karena keren”.</li>
+              <li>Gunakan 250–600 karakter; lebih panjang tidak otomatis lebih baik.</li>
+            </ul></div>
+
+          <div class="card flat" id="banding"><h3 style="margin-top:0;display:flex;gap:9px;align-items:center"><span data-icon="refresh"></span> Prosedur banding</h3>
+            <div class="steps" style="counter-reset:s">
+              <div class="step"><h4>Kumpulkan bukti</h4><p>Screenshot sanksi in-game, nomor sanksi, dan video 30 detik sebelum kejadian.</p></div>
+              <div class="step"><h4>Buat tiket “Banding Ban”</h4><p>Di dasbor player → Tiket → Buat baru. Satu banding per sanksi.</p></div>
+              <div class="step"><h4>Tunggu review 2 admin</h4><p>Bila keputusan berbeda, admin level 4 jadi pemutus. Median 24 jam.</p></div>
+              <div class="step"><h4>Keputusan final</h4><p>Hasil dan alasannya diumumkan di forum sanksi publik (tanpa data pribadi).</p></div>
+            </div>
+            <a class="btn block" href="/dashboard?tiket">Buka tiket banding</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap wrap-narrow">
+      <div class="shead"><div><span class="kicker">FAQ</span><h2>Pertanyaan seputar aturan</h2></div></div>
+      <div id="faq-list"></div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

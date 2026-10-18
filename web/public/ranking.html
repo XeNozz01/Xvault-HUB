@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ranking &amp; Leaderboard Pemain — Xvault HUB SA-MP</title>
+<meta name="description" content="Leaderboard real-time pemain Xvault HUB: skor, level, jam main, K/D, drift, turf, dan kekayaan. Cari nama pemain untuk melihat profil lengkap.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="ranking">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> Ranking</div>
+      <span class="kicker" style="margin-top:14px">Leaderboard</span>
+      <h1>Siapa yang paling dominan bulan ini?</h1>
+      <p class="lead">Klik baris mana pun untuk membuka kartu pemain: statistik, jam main 7 hari, dan capaian yang sudah dibuka.
+        Data diambil dari API <code>/api/leaderboard</code> dengan paginasi server-side.</p>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="podium" id="podium"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="card pad-lg">
+        <div class="shead" style="margin-bottom:14px">
+          <div class="tabs" style="margin:0;flex:1" id="rank-tabs">
+            <button data-tab-rank="score" class="on">Skor</button>
+            <button data-tab-rank="level">Level</button>
+            <button data-tab-rank="hours">Jam Main</button>
+            <button data-tab-rank="kills">Kill</button>
+            <button data-tab-rank="kdr">K/D</button>
+            <button data-tab-rank="drift">Drift</button>
+            <button data-tab-rank="race">Race</button>
+            <button data-tab-rank="turf">Turf Win</button>
+            <button data-tab-rank="money">Kekayaan</button>
+            <button data-tab-rank="arrests">Arrest</button>
+          </div>
+        </div>
+        <div class="filters" style="margin-bottom:14px">
+          <div class="search grow"><span data-icon="search"></span>
+            <input class="input" id="rank-search" placeholder="Cari nama karakter…" autocomplete="off"></div>
+          <select class="input" id="rank-faction" style="max-width:200px">
+            <option value="">Semua faction</option>
+            <option>LSPD</option><option>FBI</option><option>EMS</option><option>DOJ</option><option>XNC</option>
+            <option>LSC</option><option>GSF</option><option>BAL</option><option>VAG</option><option>MTA</option>
+            <option>LCN</option><option>PDX</option>
+          </select>
+          <label class="check" style="margin:0;white-space:nowrap"><input type="checkbox" id="rank-online"> Online saja</label>
+          <button class="btn sm" id="rank-refresh"><span data-icon="refresh" class="sm"></span> Segarkan</button>
+          <span class="tiny muted" id="rank-info"></span>
+        </div>
+        <div class="table-wrap scrollbar">
+          <table>
+            <thead><tr id="rank-head"></tr></thead>
+            <tbody id="rank-body"></tbody>
+          </table>
+        </div>
+        <div class="pager" id="rank-pager"></div>
+      </div>
+      <p class="tiny muted" style="margin-top:12px">Catatan skor: <code>score = jam×8 + kill×4 + level×25</code>.
+        Akun yang terbukti memakai cheat dikeluarkan dari ranking secara otomatis oleh XGuard.</p>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="grid g3">
+        <div class="card flat rv"><h3 style="display:flex;gap:9px;align-items:center"><span data-icon="trophy"></span> Musim ini</h3>
+          <p class="tiny muted">Musim 12 (Oktober–Desember). Reset divisi Gangwar tiap 60 hari, level RP tidak direset.</p>
+          <div class="metric"><span>Total hadiah RC</span><b>25.000.000</b></div>
+          <div class="metric"><span>Pemain ikut musim</span><b>4.812</b></div>
+          <div class="metric"><span>Batas klaim reward</span><b>Top 100</b></div></div>
+        <div class="card flat rv"><h3 style="display:flex;gap:9px;align-items:center"><span data-icon="star"></span> Reward peringkat</h3>
+          <div class="metric"><span>Peringkat 1</span><b>5 jt RC + SUPREME</b></div>
+          <div class="metric"><span>Peringkat 2–3</span><b>2 jt RC + VIP+</b></div>
+          <div class="metric"><span>Peringkat 4–10</span><b>750 rb RC</b></div>
+          <div class="metric"><span>Top 100</span><b>Badge profil animasi</b></div></div>
+        <div class="card flat rv"><h3 style="display:flex;gap:9px;align-items:center"><span data-icon="shield"></span> Anti-manipulasi</h3>
+          <p class="tiny muted">AFK farming, kolusi kill, dan akun booster dipotong dari ranking. Ajukan keberatan lewat tiket dengan bukti rekaman.</p>
+          <div class="metric"><span>Akun disangkal musim ini</span><b>37</b></div>
+          <div class="metric"><span>Revalidasi ranking</span><b>harian 03:00</b></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>

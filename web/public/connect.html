@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IP Address &amp; Cara Join — Xvault HUB SA-MP</title>
+<meta name="description" content="Daftar IP server SA-MP Xvault HUB: play.xvaulthub.id dengan port 7777 (RP), 7878 (Gangwar), 7979 (CnR), 8080 (Beginner). Panduan join, daftar port, dan troubleshooting.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238a2be2'/><text x='32' y='44' font-size='38' font-family='Arial' font-weight='bold' text-anchor='middle' fill='white'>X</text></svg>">
+<link rel="stylesheet" href="/assets/css/theme.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/dash.css">
+</head>
+<body data-page="connect">
+<a class="skip" href="#main">Lompat ke konten</a>
+<main id="main">
+  <header class="phead">
+    <div class="wrap">
+      <div class="crumb"><a href="/">Beranda</a> <span data-icon="chevR" class="sm"></span> IP &amp; Join</div>
+      <span class="kicker" style="margin-top:14px">IP Address Server</span>
+      <h1>Connect ke <span class="grad-text">play.xvaulthub.id</span></h1>
+      <p class="lead">Satu domain, empat port. Klik tombol <b>Salin</b> lalu tempel di SA-MP Launcher (versi 0.3.7).
+        Server RP utama memakai whitelist — mode lain bisa langsung join.</p>
+      <div class="ipbox" style="max-width:660px;margin-top:18px">
+        <div class="ip-line">
+          <span class="badge violet">utama</span>
+          <b>play.xvaulthub.id</b><span class="port">:7777</span>
+          <span class="spacer"></span>
+          <button class="btn sm" onclick="XV.copy('play.xvaulthub.id:7777', this.closest('.ipbox'))">Salin IP</button>
+        </div>
+        <div class="kbd-hint">Rekomendasi client: <b>GTA SA 1.0 US (EN)</b> + <b>SA-MP 0.3.7 R3-1-1</b>. Jangan pakai 0.3.R1 untuk server RP — versi berbeda tidak bisa masuk.</div>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Pilih Server</span><h2>Semua server aktif</h2>
+        <p>Angka online &amp; ping diperbarui otomatis dari API (SSE, tiap 3 detik).</p></div>
+        <a class="btn ghost" href="/kualitas#status">Cek status &amp; insiden</a></div>
+      <div class="grid g2" id="connect-grid"></div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="duo grid" style="display:grid;grid-template-columns:1.5fr 1fr;gap:18px;align-items:start">
+        <div class="card pad-lg">
+          <h3 style="display:flex;gap:9px;align-items:center"><span data-icon="activity"></span> Tabel live server browser</h3>
+          <div class="table-wrap" style="margin-top:12px">
+            <table id="connect-live">
+              <thead><tr><th>Server</th><th>IP:Port</th><th class="r">Online</th><th class="r">Ping</th><th class="r">Aksi</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <p class="tiny muted" style="margin:12px 0 0">Sumber: <code>/api/servers</code> — di produksi angka ini diisi dari query
+            SA-MP <code>/serverinfo</code> atau heartbeat plugin gamemode ke API situs.</p>
+        </div>
+        <div class="card pad-lg">
+          <h3 style="display:flex;gap:9px;align-items:center"><span data-icon="map"></span> Lokasi node</h3>
+          <figure class="shot" style="margin:12px 0 0;border-radius:14px"><img src="/assets/img/shot-map.jpg" alt="Peta dunia tempat node server berada" loading="lazy"></figure>
+          <dl class="spec" style="margin-top:14px">
+            <dt>Data Center</dt><dd class="mono tiny">Biznet Cyber Nusatama, Jakarta</dd>
+            <dt>Rute</dt><dd class="tiny">Peering langsung ke Telkomsel / Indihome / Biznet</dd>
+            <dt>Proteksi</dt><dd class="tiny">DDoS L3/L4/L7 · scrubbing 1.2 Tbps</dd>
+            <dt>Failover</dt><dd class="tiny">Link cadangan + auto-migrate 90 detik</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="shead"><div><span class="kicker">Langkah</span><h2>Cara join (4 langkah)</h2></div></div>
+      <div class="grid g4">
+        <div class="step rv"><h4>Siapkan GTA SA 1.0 US</h4><p>Pastikan versi 1.0 (US/EN) dan <b>tidak</b> pakai mod yang mengganti <code>samp.rsa</code>. Mod grafis boleh, mod senjata tidak boleh.</p></div>
+        <div class="step rv"><h4>Install SA-MP 0.3.7</h4><p>Unduh installer resmi, jalankan di folder GTA SA. Setelah terpasang, buka <code>samp.exe</code> (bukan gta_sa.exe).</p></div>
+        <div class="step rv"><h4>Tambah server</h4><p>Tab <b>Add Server</b> → tempel <code>play.xvaulthub.id:7777</code> → <b>Add Selected</b> → <b>Connect</b>.</p></div>
+        <div class="step rv"><h4>Login &amp; main</h4><p>Gunakan <code>/login password</code> untuk akun lama, atau <code>/register email password</code> untuk akun baru. Pemain RP harus lolos whitelist.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="kicker">Port &amp; Firewall</span>
+          <h2>Yang perlu dibuka / diizinkan</h2>
+          <p class="lead">Kalau kamu memakai router atau Windows Defender Firewall, pastikan port outbound berikut tidak diblokir
+            agar handshake SA-MP (TCP + UDP) berhasil.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Port</th><th>Server</th><th>Protokol</th><th>Akses</th><th>File gamemode</th></tr></thead>
+              <tbody id="port-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col">
+          <span class="kicker">Troubleshoot</span>
+          <div class="card flat"><h3>“Unable to connect to server”</h3>
+            <ol class="tiny" style="padding-left:18px;margin:0;line-height:1.9">
+              <li>Cek versi client — harus 0.3.7 (bukan 0.3.R1/0.3.DL).</li>
+              <li>Ketik ulang IP manual, jangan pakai spasi.</li>
+              <li>Matikan proxy/VPN; beberapa ISP memblokir port UDP tinggi.</li>
+              <li>Coba port lain (mis. 7878) untuk memastikan bukan server penuh.</li>
+            </ol></div>
+          <div class="card flat"><h3>Ping tinggi / desync</h3>
+            <p class="tiny" style="margin:0">Set <code>fps_limit 50</code> di <code>samp.cfg</code>, matikan VSync, turunkan draw distance ke 200.
+              Di sisi server, aktifkan <b>lagsync compensation</b> lewat <code>/settings</code> dasbor player.</p></div>
+          <div class="card flat"><h3>Terpakat di antrean</h3>
+          <p class="tiny" style="margin:0">Slot penuh saat prime time (19:00–01:00 WIB). VIP mendapat prioritas antrean, atau
+            mainkan <b>Beginner</b> (port 8080) yang hampir selalu kosong.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cta">
+        <div class="cta-flex">
+          <div><span class="kicker" style="color:#fff;opacity:.85">Belum punya akun situs?</span>
+            <h2>Pantau progres, dompet RC, dan tiket dari satu dasbor.</h2>
+            <p style="margin:0">Login demo: <code>Bagas_Wijaya / xvault</code> (player) atau <code>admin / xvault123</code> (admin).</p></div>
+          <div class="row wrap-row"><a class="btn primary" href="/login">Login</a><a class="btn ghost" href="/dashboard">Langsung ke dasbor</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/assets/js/core.js"></script>
+<script src="/assets/js/charts.js"></script>
+<script src="/assets/js/site.js"></script>
+</body>
+</html>
